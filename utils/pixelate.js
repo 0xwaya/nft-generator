@@ -1,10 +1,10 @@
-const fs = require("fs");
-const path = require("path");
-const { createCanvas, loadImage } = require("canvas");
-const basePath = process.cwd();
-const buildDir = `${basePath}/build/pixel_images`;
-const inputDir = `${basePath}/build/images`;
-const { format, pixelFormat } = require(`${basePath}/src/config.js`);
+const fs = require("fs"); // get file system module from node.js package manager (npm) ; //
+const path = require("path"); // get path module from node.js package manager (npm) ; //
+const { createCanvas, loadImage } = require("canvas"); // get canvas and image modules from canvas module in node.js package manager (npm) ; //
+const basePath = process.cwd(); // get current working directory path (where index.js is) ; //
+const buildDir = `${basePath}/build/pixel_images`;  // get current working directory path (where index.js is) ; //
+const inputDir = `${basePath}/build/images`; // get input directory path ; //
+const { format, pixelFormat } = require(`${basePath}/src/config.js`); // get config.js file path from current working directory ; //
 const console = require("console");
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");

@@ -6,6 +6,7 @@ const { createCanvas, loadImage } = require(`${basePath}/node_modules/canvas`);
 const buildDir = `${basePath}/build`;
 const layersDir = `${basePath}/layers`;
 const {
+
   format,
   baseUri,
   description,
@@ -29,13 +30,12 @@ var metadataList = [];
 var attributesList = [];
 var dnaList = new Set();
 const DNA_DELIMITER = "-";
-const HashlipsGiffer = require(`${basePath}/modules/HashlipsGiffer.js`);
-
-let hashlipsGiffer = null;
+const wayalabsGiffer = require(`${basePath}/modules/wayalabsGiffer.js`);
+let wayaLabsGiffer = null; // wayalabsGiffer.WayaLabsGiffer();
 
 const buildSetup = () => {
   if (fs.existsSync(buildDir)) {
-    fs.rmdirSync(buildDir, { recursive: true });
+    fs.rmSync(buildDir, { recursive: true });
   }
   fs.mkdirSync(buildDir);
   fs.mkdirSync(`${buildDir}/json`);
@@ -139,7 +139,7 @@ const addMetadata = (_dna, _edition) => {
     date: dateTime,
     ...extraMetadata,
     attributes: attributesList,
-    compiler: "HashLips Art Engine",
+    compiler: "Wayalabs Art Engine",
   };
   if (network == NETWORK.sol) {
     tempMetadata = {
@@ -239,7 +239,7 @@ const constructLayerToDna = (_dna = "", _layers = []) => {
  * such as bypassing the DNA isUnique check, this function filters out those
  * items without modifying the stored DNA.
  *
- * @param {String} _dna New DNA string
+ * @param {String} _dna  New DNA string
  * @returns new DNA string with any items that should be filtered, removed.
  */
 const filterDNAOptions = (_dna) => {
@@ -350,7 +350,7 @@ const startCreating = async () => {
     abstractedIndexes = shuffle(abstractedIndexes);
   }
   debugLogs
-    ? console.log("Editions left to create: ", abstractedIndexes)
+    ? console.log("Parrots left to create: ", abstractedIndexes)
     : null;
   while (layerConfigIndex < layerConfigurations.length) {
     const layers = layersSetup(
@@ -371,8 +371,10 @@ const startCreating = async () => {
         await Promise.all(loadedElements).then((renderObjectArray) => {
           debugLogs ? console.log("Clearing canvas") : null;
           ctx.clearRect(0, 0, format.width, format.height);
-          if (gif.export) {
-            hashlipsGiffer = new HashlipsGiffer(
+        if (gif.export) {
+          function wayalabsGiffer () {
+          const wayaLabsGiffer = new wayalabsGiffer( 
+
               canvas,
               ctx,
               `${buildDir}/gifs/${abstractedIndexes[0]}.gif`,
@@ -380,7 +382,7 @@ const startCreating = async () => {
               gif.quality,
               gif.delay
             );
-            hashlipsGiffer.start();
+            wayaLabsGiffer.start();
           }
           if (background.generate) {
             drawBackground();
@@ -391,13 +393,7 @@ const startCreating = async () => {
               index,
               layerConfigurations[layerConfigIndex].layersOrder.length
             );
-            if (gif.export) {
-              hashlipsGiffer.add();
-            }
           });
-          if (gif.export) {
-            hashlipsGiffer.stop();
-          }
           debugLogs
             ? console.log("Editions left to create: ", abstractedIndexes)
             : null;
@@ -409,10 +405,11 @@ const startCreating = async () => {
               newDna
             )}`
           );
-        });
+        };
         dnaList.add(filterDNAOptions(newDna));
         editionCount++;
         abstractedIndexes.shift();
+        });
       } else {
         console.log("DNA exists!");
         failedCount++;

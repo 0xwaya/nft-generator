@@ -7,7 +7,7 @@ const {
   description,
   namePrefix,
   network,
-  solanaMetadata,
+  avalancheMetadata,
 } = require(`${basePath}/src/config.js`);
 
 // read json data
@@ -15,10 +15,10 @@ let rawdata = fs.readFileSync(`${basePath}/build/json/_metadata.json`);
 let data = JSON.parse(rawdata);
 
 data.forEach((item) => {
-  if (network == NETWORK.sol) {
+  if (network == NETWORK.avax) {
     item.name = `${namePrefix} #${item.edition}`;
     item.description = description;
-    item.creators = solanaMetadata.creators;
+    item.creators = avalancheMetadata.creators;
   } else {
     item.name = `${namePrefix} #${item.edition}`;
     item.description = description;
@@ -35,13 +35,13 @@ fs.writeFileSync(
   JSON.stringify(data, null, 2)
 );
 
-if (network == NETWORK.sol) {
+if (network == NETWORK.avax) {
   console.log(`Updated description for images to ===> ${description}`);
   console.log(`Updated name prefix for images to ===> ${namePrefix}`);
   console.log(
     `Updated creators for images to ===> ${JSON.stringify(
-      solanaMetadata.creators
-    )}`
+      avalancheMetadata.creators || "",
+    )}` 
   );
 } else {
   console.log(`Updated baseUri for images to ===> ${baseUri}`);

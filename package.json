@@ -1,7 +1,7 @@
 {
-  "name": "hashlips_art_engine",
+  "name": "wayalabs_art_engine",
   "version": "1.1.1",
-  "description": "HashLips Art Engine is a tool used to create multiple different instances of artworks based on provided layers.",
+  "description": "Wayalabs Art Engine is a tool used to create multiple different instances of artworks based on provided layers by wayalabs artists @bjork, @cavetorch",
   "main": "index.js",
   "bin": "index.js",
   "pkg": {
@@ -21,11 +21,12 @@
     "preview_gif": "node utils/preview_gif.js",
     "generate_metadata": "node utils/generate_metadata.js"
   },
-  "author": "Daniel Eugene Botha (HashLips)",
+  "author": "@cavetorch, @wayalabs",
   "license": "MIT",
   "dependencies": {
     "canvas": "^2.8.0",
     "gif-encoder-2": "^1.0.5",
+    "giffer": "^2.0.16",
     "sha1": "^1.1.1"
   }
 }

@@ -1,8 +1,9 @@
 const NETWORK = {
-  eth: "eth",
-  sol: "sol",
-};
+  eth: "eth", // Ethereum
+  avax: "avax", // Avax
+  sol: "sol", // Solana
+}; // Avax
 
-module.exports = {
-  NETWORK,
-};
+module.exports = {   // export the constants
+  NETWORK, // set network to avax ; //
+}; // End module.exports

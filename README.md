@@ -1,22 +1,22 @@
-# Welcome to HashLips 👄
+# NFT Engine
 
-![](https://github.com/HashLips/hashlips_art_engine/blob/main/logo.png)
+![](https://github.com/......png) // link to logo image //
 
-All the code in these repos was created and explained by HashLips on the main YouTube channel.
+All the code in these repos was cloned from  HashLips, experimented on and modified by @cavetorch for @wayalabs
 
 To find out more please visit:
 
-[📺 YouTube](https://www.youtube.com/channel/UC1LV4_VQGBJHTJjEWUmy8nA)
+[YouTube](https://www.youtube.com/channel/...... ) // create a new channel /
 
-[👄 Discord](https://discord.com/invite/qh6MWhMJDN)
+[Discord](https://discord.com/invite/......) // create a new Discord server /
 
-[💬 Telegram](https://t.me/hashlipsnft)
+[Telegram](https://t.me/wayaman)
 
-[🐦 Twitter](https://twitter.com/hashlipsnft)
+[Twitter](https://twitter.com/wayalabs)
 
-[ℹ️ Website](https://hashlips.online/HashLips)
+[ℹWebsite](https://wayalabs.com)
 
-# HashLips Art Engine 🔥
+#  Art Engine 🔥
 
 ![](https://github.com/HashLips/hashlips_art_engine/blob/main/banner.png)
 
