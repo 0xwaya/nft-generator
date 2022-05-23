@@ -9,7 +9,7 @@ const baseUri = "ipfs://NewUriToReplace"; // replace with IPFS / ARWEAVE uri ; /
  
 const solanaMetadata = { // metadata for Avalanche ; //
   symbol: "MAC", // symbol for the token ; //
-  seller_fee_basis_points: 1000, // Define how much % you want from secondary market sales 1000 = 10%
+  seller_fee_basis_points: 100, // Define how much % you want from secondary market sales 1000 = 10%
   external_url: "https://...", // external url for the token
   creators: [ // Define the creators of the token
     {
@@ -28,7 +28,7 @@ const solanaMetadata = { // metadata for Avalanche ; //
 
 const layerConfigurations = [ // Define the layers you want to use in your collection here and the order they will be rendered
   { // Layer 0  - Base layer
-    growEditionSizeTo: 10, // 10 is the max number of editions
+    growEditionSizeTo: 1000, // 10 is the max number of editions
     layersOrder: [ // Define the order of layers
       { name: "Background" }, // Background layer
       { name: "skin" }, // Skin layer
@@ -46,14 +46,14 @@ const shuffleLayerConfigurations = false; // set to true to shuffle the layers o
 const debugLogs = false; // set to true to enable debug logs
 
 const format = { // Define the format of the gif
-  width: 512, // width of the gif
-  height: 512, // height of the gif
-  smoothing: false, // set to true to enable smoothing
+  width: 1000, // width of the gif
+  height: 1000, // height of the gif
+  smoothing: true, // set to true to enable smoothing
 }; // End format
      
 const gif = { // Define the gif options the gif encoder will use to create the gif file
   export: true, // set to true to export the gif file to the local directory
-  repeat: 1,  // set to true to repeat the gif
+  repeat: 0,  // set to true to repeat the gif
   quality: 100, // quality of the gif
   delay: 500, // delay between frames
 }; // End gif
@@ -81,8 +81,7 @@ const pixelFormat = { // Define the pixel format of the image
 const background = { // Define the background of the image
   generate: true, // Generate a background
   brightness: "80%", // Define the brightness of the background
-  static: false, // Define if the background will be static
-  color: "#ffffff", // Define the color of the background
+  static: true, // Define if the background will be static
   color: "#ffbdde",  
   color: "#b452ff",
   color: "#52ffff",
@@ -96,7 +95,7 @@ const extraMetadata = {}; // Define extra metadata for the image to the user (e.
 
 const rarityDelimiter = "#"; // Define the delimiter for the rarity of the image to the thumbnail
 
-const uniqueDnaTorrance = 10; // Define the number of unique dna torrance to generate
+const uniqueDnaTorrance = 1000; // Define the number of unique dna torrance to generate
 
 const preview = { // Define the preview settings
   thumbPerRow: 5, // Define how many thumbnails per row

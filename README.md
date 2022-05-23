@@ -1,26 +1,8 @@
-# NFT Engine
+# Wayalabs Art Engine 🔥
 
-![](https://github.com/......png) // link to logo image //
+![](https://github.com/add_wayalabsbanner.png) 
 
-All the code in these repos was cloned from  HashLips, experimented on and modified by @cavetorch for @wayalabs
-
-To find out more please visit:
-
-[YouTube](https://www.youtube.com/channel/...... ) // create a new channel /
-
-[Discord](https://discord.com/invite/......) // create a new Discord server /
-
-[Telegram](https://t.me/wayaman)
-
-[Twitter](https://twitter.com/wayalabs)
-
-[ℹWebsite](https://wayalabs.com)
-
-#  Art Engine 🔥
-
-![](https://github.com/HashLips/hashlips_art_engine/blob/main/banner.png)
-
-Create generative art by using the canvas api and node js. Before you use the generation engine, make sure you have node.js(v10.18.0) installed.
+Create generative art by using the canvas api and node js. 
 
 ## Installation 🛠️
 
