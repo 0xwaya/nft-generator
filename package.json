@@ -1,7 +1,7 @@
 {
-  "name": "wayalabs_art_engine",
+  "name": "wayalabs_nft_generator",
   "version": "1.1.1",
-  "description": "Wayalabs Art Engine is a tool used to create multiple different instances of artworks based on provided layers by wayalabs artists @bjork, @cavetorch",
+  "description": "Wayalabs Art Engine is a tool used to create multiple different instances of artworks based on provided layers by wayalabs artists.",
   "main": "index.js",
   "bin": "index.js",
   "pkg": {
@@ -21,10 +21,10 @@
     "preview_gif": "node utils/preview_gif.js",
     "generate_metadata": "node utils/generate_metadata.js"
   },
-  "author": "@cavetorch, @wayalabs",
+  "author": "@0xwaya",
   "license": "MIT",
   "dependencies": {
-    "canvas": "^2.8.0",
+    "canvas": "^2.11.2",
     "gif-encoder-2": "^1.0.5",
     "giffer": "^2.0.16",
     "sha1": "^1.1.1"

@@ -4,13 +4,13 @@ const { createCanvas, loadImage } = require("canvas"); // get canvas and image m
 const basePath = process.cwd(); // get current working directory path (where index.js is) ; //
 const buildDir = `${basePath}/build/json`; // get the build directory path node.js package manager (npm) ; //
 const inputDir = `${basePath}/build/images`; // get the build directory path node.js package manager (npm) ; //
-const { 
-  format,  
-  namePrefix, 
-  description, 
-  baseUri,  
-} = require(`${basePath}/src/config.js`); 
-const console = require("console"); 
+const {
+  format,
+  namePrefix,
+  description,
+  baseUri,
+} = require(`${basePath}/src/config.js`);
+const console = require("console");
 const canvas = createCanvas(format.width, format.height); // create a canvas object ; //
 const ctx = canvas.getContext("2d"); // get the canvas context ; //
 const metadataList = []; // create a list of metadata objects ; //
@@ -25,7 +25,7 @@ const buildSetup = () => {  // build setup function ; //
 const getImages = (_dir) => { // get images function ; //
   try { // try to get images ; //
     return fs
-      .readdirSync(_dir) 
+      .readdirSync(_dir)
       .filter((item) => {
         let extension = path.extname(`${_dir}${item}`); // get the file extension ; //
         if (extension == ".png" || extension == ".jpg") { // check if file extension is .png or .jpg ; //
@@ -143,7 +143,7 @@ const saveMetadata = (_loadedImageObject) => {
     image: `${baseUri}/${shortName}.png`,
     edition: Number(shortName),
     attributes: tempAttributes,
-    compiler: "HashLips Art Engine",
+    compiler: "WayaLabs NFT Generator",
   };
   fs.writeFileSync(
     `${buildDir}/${shortName}.json`,

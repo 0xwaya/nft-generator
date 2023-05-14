@@ -2,28 +2,12 @@
 
 ![](https://github.com/add_wayalabsbanner.png) 
 
-Create generative art by using the canvas api and node js. 
 
 ## Installation 🛠️
-
-If you are cloning the project then run this first, otherwise you can download the source code on the release page and skip this step.
-
-```sh
-git clone https://github.com/HashLips/hashlips_art_engine.git
-```
-
-Go to the root of your folder and run this command if you have yarn installed.
 
 ```sh
 yarn install
 ```
-
-Alternatively you can run this command if you have node installed.
-
-```sh
-npm install
-```
-
 ## Usage ℹ️
 
 Create your different layers as folders in the 'layers' directory, and add all the layer assets in these directories. You can name the assets anything as long as it has a rarity weight attached in the file name like so: `example element#70.png`. You can optionally change the delimiter `#` to anything you would like to use in the variable `rarityDelimiter` in the `src/config.js` file.
@@ -163,14 +147,10 @@ const MODE = {
 When you are ready, run the following command and your outputted art will be in the `build/images` directory and the json in the `build/json` directory:
 
 ```sh
-npm run build
+yarn build
 ```
 
-or
 
-```sh
-node index.js
-```
 
 The program will output all the images in the `build/images` directory along with the metadata files in the `build/json` directory. Each collection will have a `_metadata.json` file that consists of all the metadata in the collection inside the `build/json` directory. The `build/json` folder also will contain all the single json files that represent each image file. The single json file of a image will look something like this:
 
@@ -179,7 +159,7 @@ The program will output all the images in the `build/images` directory along wit
   "dna": "d956cdf4e460508b5ff90c21974124f68d6edc34",
   "name": "#1",
   "description": "This is the description of your NFT project",
-  "image": "https://hashlips/nft/1.png",
+  "image": "https://wayalabs/nft/1.png",
   "edition": 1,
   "date": 1731990799975,
   "attributes": [
@@ -191,7 +171,7 @@ The program will output all the images in the `build/images` directory along wit
     { "trait_type": "Bottom lid", "value": "Low" },
     { "trait_type": "Top lid", "value": "Middle" }
   ],
-  "compiler": "HashLips Art Engine"
+  "compiler": "WayaLabs NFT Generator"
 }
 ```
 
@@ -199,7 +179,7 @@ You can also add extra metadata to each metadata file by adding your extra items
 
 ```js
 const extraMetadata = {
-  creator: "Daniel Eugene Botha",
+  creator: "Creator's name",
 };
 ```
 
@@ -218,7 +198,7 @@ That's it, you're done.
 You might possibly want to update the baseUri and description after you have ran your collection. To update the baseUri and description simply run:
 
 ```sh
-npm run update_info
+yarn update_info
 ```
 
 ### Generate a preview image
@@ -226,7 +206,7 @@ npm run update_info
 Create a preview image collage of your collection, run:
 
 ```sh
-npm run preview
+yarn preview
 ```
 
 ### Generate pixelated images from collection
@@ -236,7 +216,7 @@ In order to convert images into pixelated images you would need a list of images
 Then simply run this command:
 
 ```sh
-npm run pixelate
+yarn pixelate
 ```
 
 All your images will be outputted in the `/build/pixel_images` directory.
@@ -268,7 +248,7 @@ const gif = {
 To see the percentages of each attribute across your collection, run:
 
 ```sh
-npm run rarity
+yarn rarity
 ```
 
 The output will look something like this:
@@ -291,5 +271,3 @@ Trait type: Top lid
   occurrence: '14 in 20 editions (70.00 %)'
 }
 ```
-
-Hope you create some awesome artworks with this code 👄

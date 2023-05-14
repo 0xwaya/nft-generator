@@ -1,9 +1,7 @@
 const NETWORK = {
-  eth: "eth", // Ethereum
-  avax: "avax", // Avax
-  sol: "sol", // Solana
-}; // Avax
+  goerli: "goerli", // set network to goerli ; //
+}; // End NETWORK
 
 module.exports = {   // export the constants
-  NETWORK, // set network to avax ; //
+  NETWORK, // export NETWORK
 }; // End module.exports
