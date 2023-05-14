@@ -2,7 +2,7 @@ const basePath = process.cwd(); // get current working directory path (where ind
 const fs = require("fs"); // get fs module from node.js package manager (npm) ; // 
 const { createCanvas, loadImage } = require("canvas"); // get canvas and image modules from canvas module in node.js package manager (npm) ; //
 const buildDir = `${basePath}/build`; // get build directory path ; //
-  
+
 
 const { preview } = require(`${basePath}/src/config.js`);
 
@@ -18,7 +18,7 @@ const saveProjectPreviewImage = async (_data) => {
   // Prepare canvas for the preview image ; //
   const previewCanvasWidth = thumbWidth * thumbPerRow; // calculate the width of the canvas ; //
   const previewCanvasHeight = height = thumbHeight * Math.ceil(_data.length / thumbPerRow); // calculate the height of the canvas ; //
-    thumbHeight * Math.ceil(_data.length / thumbPerRow); // calculate the height of the canvas ; //
+  thumbHeight * Math.ceil(_data.length / thumbPerRow); // calculate the height of the canvas ; //
   // Shout from the mountain tops directory ; //
   console.log( // shout from the mountain tops directory ; //
     `Preparing a ${previewCanvasWidth}x${previewCanvasHeight} project preview with ${_data.length} thumbnails.` // shout from the mountain tops directory ; //
@@ -34,12 +34,12 @@ const saveProjectPreviewImage = async (_data) => {
   for (let index = 0; index < _data.length; index++) { // iterate all NFTs ; //
     const nft = _data[index]; // get the NFT ; //
     await loadImage(`${buildDir}/images/${nft.edition}.png`).then((image) => { // load the image ; //
-      previewCtx.drawImage( _imgObject.loadedImage, // draw the image ; //
-        image, // image object ; //
-        thumbWidth * (index % thumbPerRow), // x position ; //
-        thumbHeight * Math.trunc(index / thumbPerRow), // y position ; //
+      previewCtx.drawImage(
+        image, // image ; //
+        (index % thumbPerRow) * thumbWidth, // x ; //
+        Math.floor(index / thumbPerRow) * thumbHeight, // y ; //
         thumbWidth, // width ; //
-        thumbHeight * Math.trunc(index / thumbPerRow), // height ; //
+        thumbHeight // height ; //
       ); // draw the image ; //
     }); //  load the image ; //
   } // iterate all NFTs ; //

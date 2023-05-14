@@ -70,12 +70,12 @@ const addRarity = () => {
   let rgb = imgdata.data;
   let newRgb = { r: 0, g: 0, b: 0 };
   const tolerance = 15;
-  const rareColorBase = "NOT a Hot Dog";
+  const rareColorBase = "Ara genome";
   const rareColor = [
-    { name: "Hot Dog", rgb: { r: 192, g: 158, b: 131 } },
-    { name: "Hot Dog", rgb: { r: 128, g: 134, b: 90 } },
-    { name: "Hot Dog", rgb: { r: 113, g: 65, b: 179 } },
-    { name: "Hot Dog", rgb: { r: 162, g: 108, b: 67 } },
+    { name: "macao", rgb: { r: 142, g: 223, b: 212 } },  // color Scarlet shade 
+    { name: "militaris", rgb: { r: 128, g: 134, b: 90 } }, // color green-brown shade
+    { name: "hyacinthinus", rgb: { r: 113, g: 65, b: 179 } }, // color purple shade
+    { name: "ararauna", rgb: { r: 162, g: 108, b: 67 } }, // color blue-yellow shade
   ];
 
   while ((i += 10 * 4) < rgb.length) {
@@ -102,16 +102,16 @@ const addRarity = () => {
 
   return [
     {
-      trait_type: "average color",
+      trait_type: "Ara genome",
       value: `rgb(${newRgb.r},${newRgb.g},${newRgb.b})`,
     },
     {
-      trait_type: "What is this?",
+      trait_type: "Ara color",
       value: rarity,
     },
     {
-      trait_type: "date",
-      value: randomIntFromInterval(1500, 1900),
+      trait_type: "random edition number",
+      value: randomIntFromInterval(0001, 9999),
     },
   ];
 };

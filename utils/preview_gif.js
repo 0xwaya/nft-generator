@@ -1,91 +1,75 @@
 const basePath = process.cwd();
-const fs = require("fs");
-const { createCanvas, loadImage } = require("canvas");
+const fs = require('fs');
+const { createCanvas, loadImage } = require('canvas');
 const buildDir = `${basePath}/build`;
 const imageDir = `${buildDir}/images`;
 const { format, preview_gif } = require(`${basePath}/src/config.js`);
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
+const WayalabsGiffer = require(`${basePath}/modules/WayalabsGiffer`);
 
-const WayalabsGiffer = require(`${basePath}/modules/WayalabsGiffer.js`);
-let wayalabsGiffer = null;
+const wayalabsGiffer = new WayalabsGiffer(
+  canvas,
+  ctx,
+  `${buildDir}/${preview_gif.imageName}`,
+  preview_gif.width,
+  preview_gif.height,
+  preview_gif.numberOfImages,
+  preview_gif.order,
+  preview_gif.repeat,
+  preview_gif.quality,
+  preview_gif.delay,
+  preview_gif.imageName
+);
 
 const loadImg = async (_img) => {
-  return new Promise(async (resolve) => {
-    const loadedImage = await loadImage(`${_img}`);
-    resolve({ loadedImage: loadedImage });
-  });
+  const loadedImage = await loadImage(_img);
+  return { loadedImage };
 };
 
-// read image paths
-const imageList = [];
-const rawdata = fs.readdirSync(imageDir).forEach((file) => {
-  imageList.push(loadImg(`${imageDir}/${file}`));
-});
+const getImageList = async () => {
+  const files = await fs.promises.readdir(imageDir);
+  const imagePromises = files.map(file => loadImg(`${imageDir}/${file}`));
+  return Promise.all(imagePromises);
+};
 
 const saveProjectPreviewGIF = async (_data) => {
-  // Extract from preview config
-  const { numberOfImages, order, repeat, quality, delay, imageName } =
-    preview_gif;
-  // Extract from format config
+  const { numberOfImages, order, repeat, quality, delay, imageName } = preview_gif;
   const { width, height } = format;
-  // Prepare canvas
   const previewCanvasWidth = width;
   const previewCanvasHeight = height;
 
   if (_data.length < numberOfImages) {
-    console.log(
-      `You do not have enough images to create a gif with ${numberOfImages} images.`
-    );
+    console.log(`You do not have enough images to create a gif with ${numberOfImages} images.`);
   } else {
-    // Shout from the mountain tops
-    console.log(
-      `Preparing a ${previewCanvasWidth}x${previewCanvasHeight} project preview with ${_data.length} images.`
-    );
+    console.log(`Preparing a ${previewCanvasWidth}x${previewCanvasHeight} project preview with ${_data.length} images.`);
     const previewPath = `${buildDir}/${imageName}`;
 
     ctx.clearRect(0, 0, width, height);
 
-    wayalabsGiffer = new WayalabsGiffer(
+    const giffer = new WayalabsGiffer({
       canvas,
-      ctx,
-      `${previewPath}`,
+      path: previewPath,
       repeat,
       quality,
-      delay
-    );
-    wayalabsGiffer.start();
+      delay,
+    });
 
-    await Promise.all(_data).then((renderObjectArray) => {
-      // Determin the order of the Images before creating the gif
-      if (order == "ASC") {
-        // Do nothing
-      } else if (order == "DESC") {
-        renderObjectArray.reverse();
-      } else if (order == "MIXED") {
-        renderObjectArray = renderObjectArray.sort(() => Math.random() - 0.5);
-      }
-
-      // Reduce the size of the array of Images to the desired amount
-      if (parseInt(numberOfImages) > 0) {
-        renderObjectArray = renderObjectArray.slice(0, numberOfImages);
-      }
-
-      renderObjectArray.forEach((renderObject, index) => {
+    for (const renderObject of _data.slice(0, numberOfImages)) {
+      if (Object.hasOwnProperty.call(renderObject, "loadedImage")) {
+        const { loadedImage } = renderObject;
         ctx.globalAlpha = 1;
         ctx.globalCompositeOperation = "source-over";
-        ctx.drawImage(
-          renderObject.loadedImage,
-          0,
-          0,
-          previewCanvasWidth,
-          previewCanvasHeight
-        );
-        wayalabsGiffer.add();
-      });
-    });
-    wayalabsGiffer.stop();
+        ctx.drawImage(loadedImage, 0, 0, previewCanvasWidth, previewCanvasHeight);
+        giffer.add();
+      }
+    }
+
+    giffer.stop();
   }
 };
 
-saveProjectPreviewGIF(imageList);
+(async () => {
+  const imageList = await getImageList();
+  await saveProjectPreviewGIF(imageList);
+})();

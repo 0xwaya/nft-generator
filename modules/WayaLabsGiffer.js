@@ -51,15 +51,15 @@ class wayalabsGiffer { // start creating a function ; //
     this.gifEncoder.addFrame(this.ctx); // set the ctx ; //
     this.layersOrderIndex++; // increment the layers order index ; //
     if (this.layersOrderIndex > this.layersOrderIndexMax) { // if the layers order index is greater than the layers order index max ; //
-  }; // end creating a function ; //
+    }; // end creating a function ; //
 
-  stop = () => {  // start creating a function ; //
-    this.gifEncoder.finish(); // stop the gif encoder ; //
-    const buffer = this.gifEncoder.out.getData(); // get the gif buffer ; //
-    writeFile(this.fileName, buffer, (error) => {}); // write the gif buffer to the file ; //
-    console.log(`Created gif at ${this.fileName}`); // log the gif file name ; //
-  }; // end creating a function ; //
+    stop = () => {  // start creating a function ; //
+      this.gifEncoder.finish(); // stop the gif encoder ; //
+      const buffer = this.gifEncoder.out.getData(); // get the gif buffer ; //
+      writeFile(this.fileName, buffer, (error) => { }); // write the gif buffer to the file ; //
+      console.log(`Created gif at ${this.fileName}`); // log the gif file name ; //
+    }; // end creating a function ; //
 
-module.exports = wayaLabsGiffer; // export the wayaLabsGiffer function ; //
-}; // end creating a function ; //
+    module.exports = WayalabsGiffer; // export the wayalabsGiffer function ; //
+  }; // end creating a function ; //
 } // end creating a function ; //

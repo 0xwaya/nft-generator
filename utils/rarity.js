@@ -34,9 +34,9 @@ layerConfigurations.forEach((config) => {  // initialize each layer configuratio
       elementsForLayer.push(rarityDataElement); // push the rarity data for each element to the elements for each layer array ; //
     }); // initialize each element ; //
     let layerName = layer.name; // get the layer name ; //
-      layer.options?.["displayName"] != undefined // if the layer has a display name ; //
-        ? layer.options?.["displayName"] != undefined // if the layer has a display name ; //
-        : layer.name; // if the layer has no display name ; //
+    layer.options?.["displayName"] != undefined // if the layer has a display name ; //
+      ? layer.options?.["displayName"] != undefined // if the layer has a display name ; //
+      : layer.name; // if the layer has no display name ; //
     // don't include duplicate layers on the chart ; //
     if (!rarityData.includes(layer.name)) { // if the layer is not already included on the chart ; //
       // add elements for each layer to chart strings directory path calculated above
@@ -57,23 +57,25 @@ data.forEach((element) => { // initialize each element ; //
       if (rarityDataTrait.trait == value) {   // if the rarity data trait is the same as the value of the attribute ; //
         // keep track of occurrences for each element ; //
         rarityDataTrait.occurrence++; // add 1 to the rarity data trait occurrence ; //
-      }      else { // if the rarity data trait is not the same as the value of the attribute ; // 
+      } else { // if the rarity data trait is not the same as the value of the attribute ; // 
         // do nothing ; //
       } // if the rarity data trait is not the same as the value of the attribute ; //
     }); // initialize each rarity data trait ; //
-  } // initialize each attribute ; //
-} // initialize each element ; //
+  }); // initialize each attribute ; //
+}); // initialize each element ; //
+
+
 
 // convert occurrences to occurence string directory path calculated above  for each element ; //
 for (var layer in rarityData) { // initialize each layer ; //
   for (var attribute in rarityData[layer]) { // if the layer has attributes ; //
     // get chance for each element to chart strings directory path calculated above
     let chance = rarityData[layer][attribute].occurrence / editionSize; // get the chance of each element to chart ; //
-      ((rarityData[layer][attribute].occurrence / editionSize) * 10).toFixed(2); // get the chance of each element to chart ; //
+    ((rarityData[layer][attribute].occurrence / editionSize) * 10).toFixed(2); // get the chance of each element to chart ; //
 
     // show two decimal places in percent
     rarityData[layer][attribute].occurrence = ((rarityData[layer][attribute].occurrence / editionSize) * 10).toFixed(2); // get the chance of each element to chart ; //
-      `${rarityData[layer][attribute].occurrence} in ${editionSize} editions (${chance} %)`; // get the chance of each element to chart ; //
+    `${rarityData[layer][attribute].occurrence} in ${editionSize} editions (${chance} %)`; // get the chance of each element to chart ; //
   } // if the layer has attributes ; //
 } // initialize each layer ; //
 

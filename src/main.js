@@ -20,7 +20,7 @@ const {
   text,
   namePrefix,
   network,
-  solanaMetadata,
+  goerliMetadata,
   gif,
 } = require(`${basePath}/src/config.js`);
 const canvas = createCanvas(format.width, format.height);
@@ -30,8 +30,8 @@ var metadataList = [];
 var attributesList = [];
 var dnaList = new Set();
 const DNA_DELIMITER = "-";
-const wayalabsGiffer = require(`${basePath}/modules/wayalabsGiffer.js`);
-let wayaLabsGiffer = null; // wayalabsGiffer.WayaLabsGiffer();
+const WayalabsGiffer = require(`${basePath}/modules/WayalabsGiffer.js`);
+let wayalabsGiffer = null; // wayalabsGiffer.WayalabsGiffer();
 
 const buildSetup = () => {
   if (fs.existsSync(buildDir)) {
@@ -139,7 +139,7 @@ const addMetadata = (_dna, _edition) => {
     date: dateTime,
     ...extraMetadata,
     attributes: attributesList,
-    compiler: "Wayalabs Art Engine",
+    compiler: "Wayalabs NFT Generator",
   };
   if (network == NETWORK.sol) {
     tempMetadata = {
@@ -203,18 +203,18 @@ const drawElement = (_renderObject, _index, _layersLen) => {
   ctx.globalCompositeOperation = _renderObject.layer.blend;
   text.only
     ? addText(
-        `${_renderObject.layer.name}${text.spacer}${_renderObject.layer.selectedElement.name}`,
-        text.xGap,
-        text.yGap * (_index + 1),
-        text.size
-      )
+      `${_renderObject.layer.name}${text.spacer}${_renderObject.layer.selectedElement.name}`,
+      text.xGap,
+      text.yGap * (_index + 1),
+      text.size
+    )
     : ctx.drawImage(
-        _renderObject.loadedImage,
-        0,
-        0,
-        format.width,
-        format.height
-      );
+      _renderObject.loadedImage,
+      0,
+      0,
+      format.width,
+      format.height
+    );
 
   addAttributes(_renderObject);
 };
@@ -293,8 +293,7 @@ const createDna = (_layers) => {
       random -= layer.elements[i].weight;
       if (random < 0) {
         return randNum.push(
-          `${layer.elements[i].id}:${layer.elements[i].filename}${
-            layer.bypassDNA ? "?bypassDNA=true" : ""
+          `${layer.elements[i].id}:${layer.elements[i].filename}${layer.bypassDNA ? "?bypassDNA=true" : ""
           }`
         );
       }
@@ -311,8 +310,8 @@ const saveMetaDataSingleFile = (_editionCount) => {
   let metadata = metadataList.find((meta) => meta.edition == _editionCount);
   debugLogs
     ? console.log(
-        `Writing metadata for ${_editionCount}: ${JSON.stringify(metadata)}`
-      )
+      `Writing metadata for ${_editionCount}: ${JSON.stringify(metadata)}`
+    )
     : null;
   fs.writeFileSync(
     `${buildDir}/json/${_editionCount}.json`,
@@ -371,44 +370,44 @@ const startCreating = async () => {
         await Promise.all(loadedElements).then((renderObjectArray) => {
           debugLogs ? console.log("Clearing canvas") : null;
           ctx.clearRect(0, 0, format.width, format.height);
-        if (gif.export) {
-          function wayalabsGiffer () {
-          const wayaLabsGiffer = new wayalabsGiffer( 
+          if (gif.export) {
+            function wayalabsGiffer() {
+              const wayaLabsGiffer = new wayalabsGiffer(
 
-              canvas,
-              ctx,
-              `${buildDir}/gifs/${abstractedIndexes[0]}.gif`,
-              gif.repeat,
-              gif.quality,
-              gif.delay
+                canvas,
+                ctx,
+                `${buildDir}/gifs/${abstractedIndexes[0]}.gif`,
+                gif.repeat,
+                gif.quality,
+                gif.delay
+              );
+              wayaLabsGiffer.start();
+            }
+            if (background.generate) {
+              drawBackground();
+            }
+            renderObjectArray.forEach((renderObject, index) => {
+              drawElement(
+                renderObject,
+                index,
+                layerConfigurations[layerConfigIndex].layersOrder.length
+              );
+            });
+            debugLogs
+              ? console.log("Editions left to create: ", abstractedIndexes)
+              : null;
+            saveImage(abstractedIndexes[0]);
+            addMetadata(newDna, abstractedIndexes[0]);
+            saveMetaDataSingleFile(abstractedIndexes[0]);
+            console.log(
+              `Created edition: ${abstractedIndexes[0]}, with DNA: ${sha1(
+                newDna
+              )}`
             );
-            wayaLabsGiffer.start();
-          }
-          if (background.generate) {
-            drawBackground();
-          }
-          renderObjectArray.forEach((renderObject, index) => {
-            drawElement(
-              renderObject,
-              index,
-              layerConfigurations[layerConfigIndex].layersOrder.length
-            );
-          });
-          debugLogs
-            ? console.log("Editions left to create: ", abstractedIndexes)
-            : null;
-          saveImage(abstractedIndexes[0]);
-          addMetadata(newDna, abstractedIndexes[0]);
-          saveMetaDataSingleFile(abstractedIndexes[0]);
-          console.log(
-            `Created edition: ${abstractedIndexes[0]}, with DNA: ${sha1(
-              newDna
-            )}`
-          );
-        };
-        dnaList.add(filterDNAOptions(newDna));
-        editionCount++;
-        abstractedIndexes.shift();
+          };
+          dnaList.add(filterDNAOptions(newDna));
+          editionCount++;
+          abstractedIndexes.shift();
         });
       } else {
         console.log("DNA exists!");
