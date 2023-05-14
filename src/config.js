@@ -10,24 +10,29 @@ const baseUri = "https://nftstorage.link/ipfs/bafybeihzebqbqlmjbvdpunmrq7s733gh7
 const goerliMetadata = { // metadata for goerli network ; //
   symbol: "MACAW", // symbol for the token ; //
   seller_fee_basis_points: 10, // Define how much % you want from secondary market sales 1000 = 10%
-  external_url: "https://...", // external url for the token
+  external_url: "https://loro.vercel.app", // external url for the token
   creators: [ // Define the creators of the token
     {
-      name: "@0xwaya", // name of the creator
+      name: "catatumbo", // creator of skins, background & concept
       url: "https://loro.vercel.app", // url of the creator
-      artist: "@Bjork, @0xwaya", // is the creator an artist
-      url: "https://...", // url of the creator
-      address: "0x0000000000000000000000000000000000000000", // address of the creator
-      share: 5, // % of the token that the creator owns
-    }, // repeat for each creator
+      artist: "Indio Caricuao", // is the creator an artist
+      address: "0x043a2d30E6C634452eD585ece72626Cd33D060Ab", // address of the creator
+    },
+    {
+      name: "bayesty", // name of main design & layers creator
+      url: "https://instagram.com/bayesty", // url of the creator
+      artist: "Isobel Bjork", // is the creator an artist
+      address: "0x0336743D1A5F17D8421D7E436DE7215F8347e36f", // address of the creator
+    },
   ],
-}; // repeat for each token
-// If you have selected the goerli network in the constants/network.js file, the metadata will be used for the token
+}; // End goerliMetadata
+
+
 
 
 const layerConfigurations = [ // Define the layers you want to use in your collection here and the order they will be rendered
   { // Layer 0  - Base layer
-    growEditionSizeTo: 42, // 10 is the max number of editions
+    growEditionSizeTo: 100, // 10 is the max number of editions
     layersOrder: [ // Define the order of layers
       { name: "skin" }, // Skin layer
       { name: "eyebase" }, // Eyebase layer
@@ -35,13 +40,15 @@ const layerConfigurations = [ // Define the layers you want to use in your colle
       { name: "beak" }, // Beak layer
       { name: "beard" }, // Beard layer
       { name: "body" }, // Body layer
+      { name: "item" }, // Item layer
+
     ], // End layersOrder
   }, // End Layer 0
 ]; // End layerConfigurations
 
 const shuffleLayerConfigurations = false; // set to true to shuffle the layers order
 
-const debugLogs = true; // set to true to enable debug logs
+const debugLogs = false; // set to true to enable debug logs
 
 const format = { // Define the format of the gif
   width: 500, // width of the gif
@@ -73,7 +80,7 @@ const pixelFormat = { // Define the pixel format of the image
   type: "png", // type of the image
   quality: 100, // quality of the image
   compression: 0, // compression of the image (1-9) 1 = best speed, 9 = best compression, 0 = no compression
-  ratio: 21 / 128, // Define the ratio of the image to the thumbnail (height / width) - 21 / 128 = 128x128  -  1 / 1 = 500x500  
+  ratio: 31 / 128, // Define the ratio of the image to the thumbnail (height / width) - 21 / 128 = 128x128  -  1 / 1 = 500x500  
 }; // repeat for each layer
 
 const background = { // Define the background of the image
@@ -104,10 +111,10 @@ const extraMetadata = {}; // Define extra metadata for the image to the user (e.
 
 const rarityDelimiter = "#"; // Define the delimiter for the rarity of the image to the thumbnail
 
-const uniqueDnaTorrance = 40; // Define the number of unique dna torrance to generate
+const uniqueDnaTorrance = 100; // Define the number of unique dna torrance to generate
 
 const preview = { // Define the preview settings
-  thumbPerRow: 7, // Define how many thumbnails per row
+  thumbPerRow: 10, // Define how many thumbnails per row
   thumbWidth: 100, // Define the width of the thumbnail
   imageRatio: format.height / format.width,  // Define the ratio of the image to the thumbnail (height / width)
   imageName: "preview.png", // Define the name of the preview image
