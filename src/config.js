@@ -32,7 +32,7 @@ const goerliMetadata = { // metadata for goerli network ; //
 
 const layerConfigurations = [ // Define the layers you want to use in your collection here and the order they will be rendered
   { // Layer 0  - Base layer
-    growEditionSizeTo: 100, // 10 is the max number of editions
+    growEditionSizeTo: 4200, // Define how many unique NFTs on this layer can be generated (0 = unlimited)
     layersOrder: [ // Define the order of layers
       { name: "skin" }, // Skin layer
       { name: "eyebase" }, // Eyebase layer
@@ -111,10 +111,10 @@ const extraMetadata = {}; // Define extra metadata for the image to the user (e.
 
 const rarityDelimiter = "#"; // Define the delimiter for the rarity of the image to the thumbnail
 
-const uniqueDnaTorrance = 100; // Define the number of unique dna torrance to generate
+const uniqueDnaTorrance = 4200; // Define the number of unique dna torrance to generate
 
 const preview = { // Define the preview settings
-  thumbPerRow: 10, // Define how many thumbnails per row
+  thumbPerRow: 40, // Define how many thumbnails per row
   thumbWidth: 100, // Define the width of the thumbnail
   imageRatio: format.height / format.width,  // Define the ratio of the image to the thumbnail (height / width)
   imageName: "preview.png", // Define the name of the preview image
